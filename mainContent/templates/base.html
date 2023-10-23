@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>{{ title }}</title>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+<header>
+    <ul>
+        {% if g.person == None %}
+        {% for tagname, linkURL in tagnames[0].items() %}
+        <li><a href="{{ linkURL }}">{{ tagname }}</a></li>
+        {% endfor %}
+        {% else %}
+        {% for tagname, linkURL in tagnames[g.person.role_id].items() %}
+        <li><a href="{{ linkURL }}">{{ tagname }}</a></li>
+        {% endfor %}
+        {% endif %}
+    </ul>
+</header>
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% block body %}
+{% endblock %}
+</body>
+</html>

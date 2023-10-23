@@ -1,0 +1,29 @@
+*{
+   margin: 0;
+    padding: 0;
+}
+
+header ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+header ul li {
+    list-style: none;
+    border: 3px solid black;
+    border-top-style: none;
+    border-left-style: none;
+    padding: 1em;
+    width: 100%;
+    text-align: center;
+}
+
+.row-bar {
+    display: flex;
+    justify-content: space-around;
+}
+
+.row-bar h2 {
+    border: 1px solid black;
+}
