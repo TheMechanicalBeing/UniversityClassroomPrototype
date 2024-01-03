@@ -24,10 +24,6 @@ def add_x():
 @login_required
 @admin_required
 def add_someone_get():
-    if not g.get("person", None) or g.person.get("role_id", None) != 1:
-        flash("You are not allowed here!")
-        return redirect(url_for("main.home"))
-
     form = AddSomeone(role=request.args.get("role", "administrator"))
     return render_template("add_someone.html", title="Add Someone", tagnames=tagnames, form=form)
 
@@ -36,10 +32,6 @@ def add_someone_get():
 @login_required
 @admin_required
 def add_someone_post():
-    if not g.get("person", None) or g.person.get("role_id", None) != 1:
-        flash("You are not allowed here!")
-        return redirect(url_for("main.home"))
-
     form = AddSomeone(role=request.args.get("role", "administrator"))
     if form.validate_on_submit():
         name = form.name.data
@@ -80,26 +72,11 @@ def add_someone_post():
         return redirect(url_for('main.home'))
 
 
-@add.get("/faculty")
-@login_required
-@admin_required
-def add_something_faculty():
-    if not g.get("person", None) or g.person.get("role_id", None) != 1:
-        flash("You are not allowed here!")
-        return redirect(url_for("main.home"))
-
-    return render_template("add_faculty.html", title="Add Faculty", tagnames=tagnames)
-
-
 @add.get("/subject")
 @login_required
 @admin_required
 def add_subject_get():
-    if not g.get("person", None) or g.person.get("role_id", None) != 1:
-        flash("You are not allowed here!")
-        return redirect(url_for("main.home"))
-
-    return render_template("add_someone.html", title="Add Subject", tagnames=tagnames)
+    return render_template("add_subject.html", title="Add Subject", tagnames=tagnames)
 
 
 @add.post("/subject")
@@ -107,14 +84,3 @@ def add_subject_get():
 @admin_required
 def add_subject_post():
     pass
-
-
-@add.get("/group")
-@login_required
-@admin_required
-def add_something_group():
-    if not g.get("person", None) or g.person.get("role_id", None) != 1:
-        flash("You are not allowed here!")
-        return redirect(url_for("main.home"))
-
-    return render_template("add_group.html", title="Add Group", tagnames=tagnames)
