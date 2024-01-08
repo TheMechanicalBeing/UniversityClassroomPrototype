@@ -10,15 +10,8 @@
 <body>
 <header>
     <ul>
-        {% if g.person == None %}
-        {% for tagname, linkURL in tagnames[0].items() %}
-        <li><a href="{{ linkURL }}">{{ tagname }}</a></li>
-        {% endfor %}
-        {% else %}
-        {% for tagname, linkURL in tagnames[g.person.role_id].items() %}
-        <li><a href="{{ linkURL }}">{{ tagname }}</a></li>
-        {% endfor %}
-        {% endif %}
+        <li><a href="/">Home</a></li>
+        <li><a href="/auth/login">Log in</a></li>
     </ul>
 </header>
 {% with messages = get_flashed_messages(with_categories=True) %}
